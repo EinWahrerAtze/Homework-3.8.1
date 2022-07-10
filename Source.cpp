@@ -22,7 +22,6 @@ int main()
 
 	std::wstring str;
 	int forbidden_length = 0;
-	
 	std::wcout << L"Введите запретную длину: ";
 	
 	while (!(std::wcin >> forbidden_length) || (forbidden_length < 0))
