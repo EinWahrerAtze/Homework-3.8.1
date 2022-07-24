@@ -1,16 +1,10 @@
 #pragma once
-#include <iostream>; 
+#include <iostream>
+#include <string>
+#include <exception>
 
-class Bad_length
+class Bad_length : public std::domain_error
 {
 public:
-	Bad_length(int n = 0) : m_n(n) { }
-	void msg();
-private:
-	int m_n;
+	Bad_length(const std::string & what);
 };
-
-void Bad_length::msg()
-{
-	std::wcout << L"Вы ввели слово запретной длины (" << m_n << L" символов)!\n";
-}

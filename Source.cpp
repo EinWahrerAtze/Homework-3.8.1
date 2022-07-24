@@ -1,12 +1,10 @@
-#include <string>
-#include <Windows.h>
 #include "Bad_length.h"
 
-int function(const std::wstring & str, int forbidden_length)
+int function(const std::string & str, int forbidden_length)
 {
 	if (str.length() > forbidden_length)
 	{
-		throw Bad_length(str.length());
+		throw Bad_length("You entered more than allowed!\n");
 	}
 	else
 	{
@@ -16,28 +14,24 @@ int function(const std::wstring & str, int forbidden_length)
 
 int main()
 {
-	setlocale(LC_ALL, "Russian");
-	SetConsoleCP(1251);
-	SetConsoleOutputCP(1251);
-
-	std::wstring str;
+	std::string str;
 	int forbidden_length = 0;
-	std::wcout << L"Введите запретную длину: ";
+	std::cout << "Enter the forbidden length: ";
 	
-	while (!(std::wcin >> forbidden_length) || (forbidden_length < 0))
+	while (!(std::cin >> forbidden_length) || (forbidden_length < 0))
 	{
-		std::wcin.clear();
-		while (std::wcin.get() != L'\n')
+		std::cin.clear();
+		while (std::cin.get() != '\n')
 			continue;
-		std::wcout << L"Пожалуйста, введите положительное число: ";
+		std::cout << "Please, enter a positive value: ";
 	}
 	
-	std::wcin.get();
+	std::cin.get();
 
 	while (true)
 	{
-		std::wcout << L"Введите слово не длиннее " << forbidden_length << L" символов: ";
-		getline(std::wcin, str);
+		std::cout << "Enter a word less than " << forbidden_length << " characters: ";
+		getline(std::cin, str);
 	
 		int length = 0;
 
@@ -47,14 +41,14 @@ int main()
 		}
 		catch (Bad_length & bl)
 		{
-			bl.msg();
-			std::wcout << L"Завершение программы.\n";
+			std::cout << bl.what();
+			std::cout << "Program terminating.\n";
 			break;
 		}
 
-		std::wcout << L"Длина слова \"" << str << L"\" составляет " << length << L" символа(ов).\n";
+		std::cout << "The lenght of \"" << str << "\" is " << length << " characters.\n";
 	}
 
-	std::wcout << L"Пока!\n";
+	std::cout << "Bye!\n";
 	return 0;
 }
