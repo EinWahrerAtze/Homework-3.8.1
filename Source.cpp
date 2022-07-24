@@ -1,6 +1,6 @@
 #include "Bad_length.h"
 
-int function(const std::string & str, int forbidden_length)
+size_t function(const std::string & str, int forbidden_length)
 {
 	if (str.length() > forbidden_length)
 	{
@@ -33,7 +33,7 @@ int main()
 		std::cout << "Enter a word less than " << forbidden_length << " characters: ";
 		getline(std::cin, str);
 	
-		int length = 0;
+		size_t length = 0;
 
 		try
 		{

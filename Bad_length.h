@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 #include <string>
-#include <exception>
+#include <stdexcept>
 
 class Bad_length : public std::domain_error
 {
