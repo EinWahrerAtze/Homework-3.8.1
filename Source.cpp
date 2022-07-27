@@ -1,10 +1,11 @@
+#include <iostream>
 #include "Bad_length.h"
 
 size_t function(const std::string & str, int forbidden_length)
 {
 	if (str.length() > forbidden_length)
 	{
-		throw Bad_length("You entered more than allowed!\n");
+		throw Bad_length("You entered " + std::to_string(str.length()) + " symbols of " + std::to_string(forbidden_length) + " allowed!\n");
 	}
 	else
 	{
